@@ -6,10 +6,11 @@ import { LeadRequestDialog } from "@/components/rabines/lead-request-dialog";
 import { Menu, X } from "lucide-react";
 
 const links = [
-  { label: "Products & tools", href: "#products" },
-  { label: "CNC services", href: "#services" },
-  { label: "Engineering support", href: "#engineering" },
-  { label: "About Rabines", href: "#about" },
+  { label: "Shop", href: "/shop/tool-holders" },
+  { label: "Products & tools", href: "/#products" },
+  { label: "CNC services", href: "/#services" },
+  { label: "Engineering support", href: "/#engineering" },
+  { label: "About Rabines", href: "/#about" },
 ];
 
 export function SiteHeader() {
@@ -18,7 +19,7 @@ export function SiteHeader() {
   return (
     <header className="relative z-20 border-b border-white/10 bg-[#11171c] text-white">
       <div className="mx-auto flex h-[78px] max-w-[1800px] items-center justify-between gap-4 px-4 sm:px-7 xl:px-14">
-        <a href="#top" aria-label="Rabines Stores home" className="flex shrink-0 items-center">
+        <a href="/#top" aria-label="Rabines Stores home" className="flex shrink-0 items-center">
           <Image src="/images/rabines-logo.png" alt="Rabines Stores" width={78} height={76} priority className="h-[70px] w-[70px] object-contain" />
         </a>
 
