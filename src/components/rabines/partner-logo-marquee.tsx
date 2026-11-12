@@ -1,16 +1,8 @@
 "use client";
 
+import Image from "next/image";
 import { Pause, Play } from "lucide-react";
 import { useState } from "react";
-
-const placeholderMarks = [
-  "NORTHSTAR",
-  "AXIS INDUSTRIES",
-  "FORM & CUT",
-  "VECTOR MOTION",
-  "ORBITAL",
-  "MONOLITH",
-];
 
 export function PartnerLogoMarquee() {
   const [isPaused, setIsPaused] = useState(false);
@@ -22,18 +14,19 @@ export function PartnerLogoMarquee() {
           {[false, true].map((isDuplicate) => (
             <ul
               key={String(isDuplicate)}
-              aria-label={isDuplicate ? undefined : "Placeholder industry partner wordmarks"}
+              aria-label={isDuplicate ? undefined : "Partner logos from the confirmed client reference"}
               aria-hidden={isDuplicate}
-              className="flex shrink-0 items-center gap-x-10 px-5 sm:gap-x-14 sm:px-7 lg:gap-x-16"
+              className="flex shrink-0 items-center px-5 sm:px-7"
             >
-              {placeholderMarks.map((mark) => (
-                <li
-                  key={`${isDuplicate}-${mark}`}
-                  className="whitespace-nowrap font-mono text-[12px] font-semibold tracking-[0.11em] text-white/50 sm:text-sm"
-                >
-                  {mark}
-                </li>
-              ))}
+              <li>
+                <Image
+                  src="/images/categories/reference-brand-strip.png"
+                  alt={isDuplicate ? "" : "Six partner logos from the confirmed Rabines Stores reference"}
+                  width={820}
+                  height={38}
+                  className="h-[38px] w-[820px] max-w-none object-contain"
+                />
+              </li>
             </ul>
           ))}
         </div>
@@ -41,7 +34,7 @@ export function PartnerLogoMarquee() {
 
       <div className="mt-4 flex items-center justify-center gap-3">
         <p className="font-mono text-[9px] uppercase tracking-[0.12em] text-slate-600">
-          Placeholder wordmarks — replace with approved client logos
+          Partner marks reproduced from the confirmed reference
         </p>
         <button
           type="button"
