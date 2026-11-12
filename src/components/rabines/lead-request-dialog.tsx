@@ -7,12 +7,15 @@ import { ArrowUpRight, Check, MessageCircle, X } from "lucide-react";
 type LeadRequestDialogProps = {
   label: string;
   className: string;
+  ariaLabel?: string;
+  defaultProduct?: string;
+  showArrow?: boolean;
 };
 
 const fields = "h-11 w-full border border-white/15 bg-[#11171c] px-3 text-sm text-white outline-none transition-colors placeholder:text-slate-500 focus:border-[#ff7040] focus:ring-2 focus:ring-[#ff7040]/20";
 const labelClass = "mb-1.5 block text-xs font-medium text-slate-300";
 
-export function LeadRequestDialog({ label, className }: LeadRequestDialogProps) {
+export function LeadRequestDialog({ label, className, ariaLabel, defaultProduct = "", showArrow = false }: LeadRequestDialogProps) {
   const [open, setOpen] = useState(false);
 
   function handleSubmit(event: FormEvent<HTMLFormElement>) {
@@ -46,7 +49,10 @@ export function LeadRequestDialog({ label, className }: LeadRequestDialogProps) 
   return (
     <Dialog.Root open={open} onOpenChange={setOpen}>
       <Dialog.Trigger asChild>
-        <button type="button" className={className}>{label}</button>
+        <button type="button" aria-label={ariaLabel} className={className}>
+          {label}
+          {showArrow && <ArrowUpRight aria-hidden="true" className="size-3.5 transition-transform group-hover/view-range:-translate-y-0.5 group-hover/view-range:translate-x-0.5" />}
+        </button>
       </Dialog.Trigger>
       <Dialog.Portal>
         <Dialog.Overlay className="fixed inset-0 z-40 bg-black/75 backdrop-blur-sm" />
@@ -85,11 +91,13 @@ export function LeadRequestDialog({ label, className }: LeadRequestDialogProps) 
               </div>
               <div>
                 <label className={labelClass} htmlFor="lead-product">What are you looking for? <span className="text-[#ff8050]">*</span></label>
-                <select className={`${fields} appearance-none`} id="lead-product" name="product" defaultValue="" required>
+                <select className={`${fields} appearance-none`} id="lead-product" name="product" defaultValue={defaultProduct} required>
                   <option value="" disabled>Select a product or service</option>
-                  <option>CNC tool holders &amp; inserts</option>
-                  <option>Lathe jaws &amp; accessories</option>
-                  <option>Measuring instruments</option>
+                  <option>CNC Tool Holders</option>
+                  <option>Cutting Inserts</option>
+                  <option>Lathe Jaws</option>
+                  <option>Machine Accessories</option>
+                  <option>Measuring Instruments</option>
                   <option>CNC programming or drawings</option>
                   <option>Not sure — I need guidance</option>
                 </select>

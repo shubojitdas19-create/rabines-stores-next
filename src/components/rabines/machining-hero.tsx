@@ -4,7 +4,7 @@ import { LeadRequestDialog } from "@/components/rabines/lead-request-dialog";
 
 export function MachiningHero() {
   return (
-    <main id="top" className="relative isolate min-h-[620px] overflow-hidden bg-[#171e23] text-white sm:min-h-[640px] lg:min-h-[calc(100svh-78px)]">
+    <div id="top" className="relative isolate min-h-[620px] overflow-hidden bg-[#171e23] text-white sm:min-h-[640px] lg:min-h-[calc(100svh-78px)]">
       <Image
         src="/images/cnc-machining-hero.png"
         alt="Precision CNC lathe machining a polished steel workpiece"
@@ -43,7 +43,7 @@ export function MachiningHero() {
         </div>
 
         <div id="hero-details" className="mt-10 grid max-w-[900px] grid-cols-1 border-t border-white/20 pt-4 sm:mt-12 sm:grid-cols-3 sm:pt-5">
-          <div id="products" className="border-b border-white/15 py-3 sm:border-b-0 sm:border-r sm:py-0 sm:pr-5">
+          <div className="border-b border-white/15 py-3 sm:border-b-0 sm:border-r sm:py-0 sm:pr-5">
             <p className="font-mono text-[10px] uppercase tracking-[0.14em] text-[#f2763b]">CNC cutting tools</p>
             <p className="mt-1 text-xs text-slate-200 sm:text-sm">Tool holders, inserts &amp; boring bars</p>
           </div>
@@ -61,6 +61,6 @@ export function MachiningHero() {
           <span className="h-px w-8 bg-[#f2763b]" /> Helping production run smoothly <MoveUpRight aria-hidden="true" className="size-3.5" />
         </div>
       </section>
-    </main>
+    </div>
   );
 }
