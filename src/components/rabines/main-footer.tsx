@@ -1,12 +1,13 @@
 import Image from "next/image";
+import Link from "next/link";
 import { Mail, MapPin, Phone } from "lucide-react";
 import { LeadRequestDialog } from "@/components/rabines/lead-request-dialog";
 
 const quickLinks = [
-  { label: "CNC Services", href: "#cnc-services" },
-  { label: "CNC Programs", href: "#cnc-program-solutions" },
-  { label: "Engineering Drawings", href: "#engineering-drawings" },
-  { label: "Tools & Instruments", href: "#products" },
+  { label: "CNC Services", href: "/services#cnc-services" },
+  { label: "CNC Programs", href: "/services#cnc-program-solutions" },
+  { label: "Engineering Drawings", href: "/services#engineering-drawings" },
+  { label: "Tools & Instruments", href: "/shop/tool-holders" },
 ];
 
 const contactLinkClass = "group flex items-start gap-3 text-sm leading-6 text-slate-400 transition-colors hover:text-white";
@@ -67,7 +68,7 @@ export function MainFooter() {
             <ul className="flex flex-col items-start gap-3.5">
               {quickLinks.map((link) => (
                 <li key={link.label}>
-                  <a className={footerLinkClass} href={link.href}>{link.label}</a>
+                  <Link className={footerLinkClass} href={link.href}>{link.label}</Link>
                 </li>
               ))}
             </ul>
