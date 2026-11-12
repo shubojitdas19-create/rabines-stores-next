@@ -60,23 +60,36 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
             <p>Sample catalog detail — dimensions, prices, and availability below are illustrative, not verified Rabines product data. Confirm the manufacturer specification before ordering.</p>
           </div>
 
-          <div className="grid grid-cols-1 gap-5 lg:grid-cols-[1.04fr_0.96fr] lg:items-start lg:gap-8">
-            <ProductImageGallery product={product} />
-
-            <section aria-labelledby="product-title" className="border border-[#d9dddf] bg-white p-4 sm:p-6 lg:p-7">
+          <div className="grid grid-cols-1 gap-4 sm:gap-6 lg:grid-cols-[minmax(0,1.08fr)_minmax(360px,0.92fr)] lg:items-start lg:gap-x-8 lg:gap-y-6">
+            <header className="lg:col-span-2">
               <div className="flex flex-wrap items-center gap-2">
-                <span className="bg-[#171e23] px-2.5 py-1 font-mono text-[9px] uppercase tracking-[0.12em] text-white">{product.category}</span>
-                <span className={`px-2.5 py-1 font-mono text-[9px] uppercase tracking-[0.1em] ${product.inStock ? "bg-[#e5eee8] text-[#315b43]" : "bg-[#eceeef] text-[#737a7e]"}`}>
+                <span className="bg-[#171e23] px-2.5 py-1.5 font-mono text-[9px] uppercase tracking-[0.12em] text-white">{product.category}</span>
+                <span className={`inline-flex items-center gap-1.5 px-2.5 py-1.5 font-mono text-[9px] uppercase tracking-[0.1em] ${product.inStock ? "bg-[#e5eee8] text-[#315b43]" : "bg-[#eceeef] text-[#737a7e]"}`}>
+                  <span aria-hidden="true" className={`size-1.5 rounded-full ${product.inStock ? "bg-[#4e8a63]" : "bg-[#939a9e]"}`} />
                   {product.inStock ? "Sample status · in stock" : "Sample status · backorder"}
                 </span>
               </div>
-              <h1 id="product-title" className="mt-4 text-2xl font-semibold leading-tight tracking-[-0.04em] text-[#171d21] sm:text-3xl">{product.name}</h1>
-              <p className="mt-2 font-mono text-[10px] uppercase tracking-[0.1em] text-[#7a8286]">SKU {product.sku}</p>
-              <ProductPurchasePanel product={product} />
-              <div className="mt-5">
-                <ProductSpecificationTable product={product} />
+              <h1 id="product-title" className="mt-3 max-w-4xl text-[26px] font-semibold leading-[1.12] tracking-[-0.045em] text-[#171d21] sm:text-3xl lg:text-[40px]">{product.name}</h1>
+              <p className="mt-2 font-mono text-[9px] uppercase tracking-[0.12em] text-[#7a8286] sm:text-[10px]">SKU {product.sku}</p>
+            </header>
+
+            <div className="min-w-0 lg:row-start-2">
+              <ProductImageGallery product={product} />
+            </div>
+
+            <aside aria-label="Purchase options" className="h-fit border border-[#d9dddf] bg-white lg:row-start-2 lg:sticky lg:top-6">
+              <div className="flex items-center justify-between gap-3 border-b border-[#e6e8e9] bg-[#f7f8f8] px-4 py-3 sm:px-6">
+                <p className="font-mono text-[9px] uppercase tracking-[0.13em] text-[#616a6f]">Purchase options</p>
+                <span className="font-mono text-[8px] uppercase tracking-[0.1em] text-[#90979b]">Sample pricing</span>
               </div>
-            </section>
+              <div className="p-4 sm:p-6">
+                <ProductPurchasePanel product={product} />
+              </div>
+            </aside>
+
+            <div className="min-w-0 lg:col-span-2">
+              <ProductSpecificationTable product={product} />
+            </div>
           </div>
         </div>
       </main>

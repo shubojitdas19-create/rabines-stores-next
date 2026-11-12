@@ -26,16 +26,9 @@ export function ProductImageGallery({ product }: { product: CatalogProduct }) {
           </Dialog.Trigger>
         </div>
 
-        <div className="mt-3 flex items-center gap-3">
-          <Dialog.Trigger asChild>
-            <button type="button" aria-label={`Open enlarged view of ${product.name}`} aria-current="true" className="relative size-[68px] shrink-0 overflow-hidden border-2 border-primary bg-[#e8ebeb] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2">
-              <Image src={product.image} alt="" fill sizes="68px" className="object-cover" />
-            </button>
-          </Dialog.Trigger>
-          <div>
-            <p className="font-mono text-[9px] font-semibold uppercase tracking-[0.12em] text-[#4d565b]">01 <span className="text-[#92999d]">/ 01</span></p>
-            <p className="mt-1 text-xs text-[#7a8286]">Product view · Select to enlarge</p>
-          </div>
+        <div className="mt-3 flex items-center justify-between gap-3 border-b border-[#d9dddf] pb-3">
+          <p className="text-xs text-[#697277]">Product image <span className="text-[#a0a6a9]">·</span> Select “Zoom image” to enlarge</p>
+          <p className="shrink-0 font-mono text-[9px] font-semibold uppercase tracking-[0.12em] text-[#7a8286]">01 / 01</p>
         </div>
 
         <Dialog.Portal>

@@ -16,19 +16,19 @@ export function ProductPurchasePanel({ product }: { product: CatalogProduct }) {
   }
 
   return (
-    <div className="mt-5 border-t border-[#e6e8e9] pt-4">
-      <div className="mb-4 flex items-end justify-between gap-4">
-        <div>
+    <div>
+      <div className="mb-5 flex items-end justify-between gap-4">
+        <div className="min-w-0">
           <p className="font-mono text-[9px] uppercase tracking-[0.12em] text-[#858c90]">Sample price</p>
-          <p className="mt-1 text-2xl font-semibold tracking-[-0.04em] text-[#171d21]">₹{product.price.toLocaleString("en-IN")}</p>
+          <p className="mt-1 text-3xl font-semibold tracking-[-0.05em] text-[#171d21]">₹{product.price.toLocaleString("en-IN")}</p>
           <p className="mt-1 text-xs text-[#7a8286]">{product.priceUnit}</p>
         </div>
-        <label className="text-right" htmlFor={`product-quantity-${product.id}`}>
+        <label className="shrink-0 text-right" htmlFor={`product-quantity-${product.id}`}>
           <span className="mb-1.5 block font-mono text-[9px] uppercase tracking-[0.1em] text-[#7a8286]">Quantity</span>
           <input
             id={`product-quantity-${product.id}`}
             aria-label={`Quantity of ${product.name}`}
-            className="h-10 w-20 border border-[#d0d5d7] bg-white px-2 text-center text-sm text-[#252d32] outline-none focus:border-primary focus:ring-2 focus:ring-primary/20"
+            className="h-11 w-[5.25rem] border border-[#d0d5d7] bg-white px-2 text-center text-sm text-[#252d32] outline-none focus:border-primary focus:ring-2 focus:ring-primary/20"
             type="number"
             min="1"
             max="9999"
@@ -49,7 +49,7 @@ export function ProductPurchasePanel({ product }: { product: CatalogProduct }) {
           ariaLabel={`Request a WhatsApp quote for ${product.name}`}
           defaultProduct={`${product.name} · SKU ${product.sku}`}
           showArrow
-          className="group inline-flex min-h-12 items-center justify-center gap-2 border border-[#252d32] bg-[#171e23] px-3 text-[9px] font-bold uppercase tracking-[0.055em] text-white transition-colors hover:border-primary hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary sm:text-[9px]"
+          className="group inline-flex min-h-12 items-center justify-center gap-2 border border-[#252d32] bg-[#171e23] px-3 text-[10px] font-bold uppercase tracking-[0.06em] text-white transition-colors hover:border-primary hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
         />
       </div>
 

@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import * as Dialog from "@radix-ui/react-dialog";
-import { ArrowUpRight, X } from "lucide-react";
+import { ArrowRight, X } from "lucide-react";
 import type { CatalogProduct } from "@/components/rabines/shop/catalog-data";
 
 const priceFormatter = new Intl.NumberFormat("en-IN", {
@@ -13,8 +13,10 @@ const priceFormatter = new Intl.NumberFormat("en-IN", {
 });
 
 export function ProductCard({ product }: { product: CatalogProduct }) {
+  const keySpecs = product.specs.slice(0, 2);
+
   return (
-    <article className="group overflow-hidden border border-[#d9dddf] bg-white transition-colors duration-200 hover:border-primary">
+    <article className="group flex h-full flex-col overflow-hidden border border-[#d9dddf] bg-white transition-all duration-200 hover:-translate-y-0.5 hover:border-[#ef6b32] hover:shadow-[0_12px_30px_rgba(17,23,28,0.08)]">
       <div className="relative aspect-[4/3] overflow-hidden bg-[#e7e9e9]">
         <Image
           src={product.image}
@@ -23,37 +25,52 @@ export function ProductCard({ product }: { product: CatalogProduct }) {
           sizes="(max-width: 639px) 92vw, (max-width: 1279px) 45vw, 28vw"
           className="object-cover transition-transform duration-500 group-hover:scale-[1.035]"
         />
-        <span className="absolute left-3 top-3 border border-black/10 bg-white/90 px-2.5 py-1 font-mono text-[9px] uppercase tracking-[0.13em] text-[#3e4549]">
+        <span className="absolute left-3 top-3 border border-black/10 bg-white/95 px-2.5 py-1.5 font-mono text-[9px] uppercase tracking-[0.13em] text-[#3e4549]">
           {product.category}
         </span>
-        <span
-          className={`absolute right-3 top-3 px-2.5 py-1 font-mono text-[9px] uppercase tracking-[0.12em] ${product.inStock ? "bg-[#e5eee8]/95 text-[#315b43]" : "bg-white/90 text-[#737a7e]"}`}
-        >
+        <span className={`absolute right-3 top-3 inline-flex items-center gap-1.5 px-2.5 py-1.5 font-mono text-[9px] uppercase tracking-[0.1em] ${product.inStock ? "bg-[#e5eee8]/95 text-[#315b43]" : "bg-white/95 text-[#737a7e]"}`}>
+          <span aria-hidden="true" className={`size-1.5 rounded-full ${product.inStock ? "bg-[#4e8a63]" : "bg-[#939a9e]"}`} />
           {product.inStock ? "In stock" : "Backorder"}
         </span>
-
-        <div className="absolute inset-x-3 bottom-3 translate-y-0 opacity-100 transition-all duration-200 sm:translate-y-2 sm:opacity-0 sm:group-hover:translate-y-0 sm:group-hover:opacity-100 sm:group-focus-within:translate-y-0 sm:group-focus-within:opacity-100">
-          <ProductSpecsDialog product={product} />
-        </div>
       </div>
 
-      <div className="p-4 sm:p-5">
-        <p className="font-mono text-[10px] tracking-[0.08em] text-[#7a8286]">SKU {product.sku}</p>
-        <h2 className="mt-2 min-h-[3rem] text-[15px] font-semibold leading-6 tracking-[-0.02em] text-[#171d21]">
-          <Link href={`/shop/tool-holders/${product.id}`} className="transition-colors hover:text-[#d85f2d] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary">
-            {product.name}
-          </Link>
-        </h2>
-        <div className="mt-4 flex items-end justify-between gap-3 border-t border-[#e6e8e9] pt-3.5">
-          <div>
-            <p className="font-mono text-[9px] uppercase tracking-[0.12em] text-[#858c90]">Sample price</p>
-            <p className="mt-1 text-[18px] font-semibold tracking-tight text-[#171d21]">{priceFormatter.format(product.price)}</p>
-          </div>
-          <p className="max-w-[6rem] text-right text-[10px] leading-4 text-[#7a8286]">{product.priceUnit}</p>
+      <div className="flex flex-1 flex-col p-4 sm:p-5">
+        <div>
+          <p className="font-mono text-[9px] uppercase tracking-[0.1em] text-[#81898d]">SKU {product.sku}</p>
+          <h2 className="mt-2 min-h-[3.25rem] text-[15px] font-semibold leading-[1.55] tracking-[-0.02em] text-[#171d21] sm:text-base">
+            <Link href={`/shop/tool-holders/${product.id}`} className="transition-colors hover:text-[#d85f2d] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary">
+              {product.name}
+            </Link>
+          </h2>
         </div>
-        <Link href={`/shop/tool-holders/${product.id}`} className="mt-3 flex min-h-10 items-center justify-between border-t border-[#e6e8e9] pt-3 font-mono text-[9px] font-semibold uppercase tracking-[0.11em] text-[#343c40] transition-colors hover:text-[#d85f2d] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary">
-          Full product details <ArrowUpRight aria-hidden="true" className="size-4" />
-        </Link>
+
+        {keySpecs.length > 0 && (
+          <dl className="mt-4 grid grid-cols-2 gap-2">
+            {keySpecs.map((spec) => (
+              <div key={spec.label} className="min-w-0 border-l-2 border-[#e4e7e8] bg-[#f6f7f7] px-2.5 py-2">
+                <dt className="truncate font-mono text-[8px] uppercase tracking-[0.08em] text-[#81898d]">{spec.label}</dt>
+                <dd className="mt-1 truncate text-[11px] font-medium text-[#343c40]">{spec.value}</dd>
+              </div>
+            ))}
+          </dl>
+        )}
+
+        <div className="mt-auto pt-4">
+          <div className="flex items-end justify-between gap-3 border-t border-[#e6e8e9] pt-3.5">
+            <div>
+              <p className="font-mono text-[8px] uppercase tracking-[0.12em] text-[#858c90]">Sample price</p>
+              <p className="mt-1 text-lg font-semibold tracking-tight text-[#171d21]">{priceFormatter.format(product.price)}</p>
+            </div>
+            <p className="max-w-[7rem] text-right text-[10px] leading-4 text-[#7a8286]">{product.priceUnit}</p>
+          </div>
+
+          <div className="mt-3 grid grid-cols-[minmax(0,1fr)_auto] gap-2">
+            <Link href={`/shop/tool-holders/${product.id}`} className="inline-flex min-h-11 items-center justify-between gap-2 bg-[#171e23] px-3 text-[9px] font-bold uppercase tracking-[0.08em] text-white transition-colors hover:bg-[#29343a] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2">
+              Product details <ArrowRight aria-hidden="true" className="size-4 shrink-0 text-primary" />
+            </Link>
+            <ProductSpecsDialog product={product} />
+          </div>
+        </div>
       </div>
     </article>
   );
@@ -66,15 +83,14 @@ function ProductSpecsDialog({ product }: { product: CatalogProduct }) {
         <button
           type="button"
           aria-label={`View specifications for ${product.name}`}
-          className="flex w-full items-center justify-between bg-primary px-4 py-3 text-left text-[10px] font-bold uppercase tracking-[0.12em] text-[#14191d] transition-colors hover:bg-[#ff8750] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
+          className="inline-flex min-h-11 items-center justify-center border border-[#d9dddf] bg-white px-3 text-[9px] font-semibold uppercase tracking-[0.07em] text-[#343c40] transition-colors hover:border-[#171d21] hover:text-[#171d21] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
         >
-          <span>View Specs</span>
-          <ArrowUpRight aria-hidden="true" className="size-4" />
+          Quick specs
         </button>
       </Dialog.Trigger>
       <Dialog.Portal>
         <Dialog.Overlay className="fixed inset-0 z-50 bg-[#081014]/75 backdrop-blur-sm" />
-        <Dialog.Content className="fixed left-1/2 top-1/2 z-50 max-h-[85vh] w-[min(92vw,38rem)] -translate-x-1/2 -translate-y-1/2 overflow-y-auto border border-white/10 bg-[#11171c] text-white shadow-2xl focus:outline-none">
+        <Dialog.Content className="fixed left-1/2 top-1/2 z-50 max-h-[85dvh] w-[min(92vw,38rem)] -translate-x-1/2 -translate-y-1/2 overflow-y-auto border border-white/10 bg-[#11171c] text-white shadow-2xl focus:outline-none">
           <div className="flex items-start justify-between gap-6 border-b border-white/10 p-5 sm:p-7">
             <div>
               <p className="font-mono text-[10px] uppercase tracking-[0.15em] text-primary">{product.category} · Sample catalog</p>
@@ -82,11 +98,7 @@ function ProductSpecsDialog({ product }: { product: CatalogProduct }) {
               <Dialog.Description className="mt-2 font-mono text-xs text-slate-400">SKU {product.sku}</Dialog.Description>
             </div>
             <Dialog.Close asChild>
-              <button
-                type="button"
-                aria-label="Close product specifications"
-                className="grid size-9 shrink-0 place-items-center border border-white/15 text-slate-300 transition-colors hover:border-primary hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
-              >
+              <button type="button" aria-label="Close product specifications" className="grid size-10 shrink-0 place-items-center border border-white/15 text-slate-300 transition-colors hover:border-primary hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary">
                 <X aria-hidden="true" className="size-4" />
               </button>
             </Dialog.Close>
@@ -100,9 +112,7 @@ function ProductSpecsDialog({ product }: { product: CatalogProduct }) {
                 </div>
               ))}
             </dl>
-            <p className="mt-5 text-xs leading-5 text-slate-400">
-              Demonstration specifications only. Confirm the exact grade, dimensions, pricing, and availability with Rabines Stores before ordering.
-            </p>
+            <p className="mt-5 text-xs leading-5 text-slate-400">Demonstration specifications only. Confirm the exact grade, dimensions, pricing, and availability with Rabines Stores before ordering.</p>
           </div>
         </Dialog.Content>
       </Dialog.Portal>

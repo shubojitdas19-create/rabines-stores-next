@@ -2,6 +2,7 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import { ChevronRight, Info } from "lucide-react";
 import { MainFooter } from "@/components/rabines/main-footer";
+import { sampleProducts } from "@/components/rabines/shop/catalog-data";
 import { PreFooterCTA } from "@/components/rabines/pre-footer-cta";
 import { SiteHeader } from "@/components/rabines/site-header";
 import { ToolHolderCatalog } from "@/components/rabines/shop/tool-holder-catalog";
@@ -41,9 +42,9 @@ export default function ToolHoldersPage() {
                   Browse sample tooling for turning, milling, and drilling — organized for a faster technical comparison.
                 </p>
               </div>
-              <div className="flex items-center gap-3 border-l-2 border-primary pl-4 sm:mb-1">
-                <span className="font-mono text-2xl font-semibold text-white">09</span>
-                <span className="max-w-20 font-mono text-[9px] uppercase leading-4 tracking-[0.12em] text-slate-400">Sample catalog items</span>
+              <div className="inline-flex w-fit items-center gap-3 border-l-2 border-primary pl-4 sm:mb-1">
+                <span className="font-mono text-2xl font-semibold text-white">{String(sampleProducts.length).padStart(2, "0")}</span>
+                <span className="font-mono text-[9px] uppercase tracking-[0.12em] text-slate-400">Sample items</span>
               </div>
             </div>
           </div>
