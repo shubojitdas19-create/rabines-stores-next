@@ -3,6 +3,7 @@ import { LeadRequestDialog } from "@/components/rabines/lead-request-dialog";
 import { PartnerLogoMarquee } from "@/components/rabines/partner-logo-marquee";
 
 type CategoryCard = {
+  id?: string;
   kind: "product" | "service";
   title: string;
   subtitle: string;
@@ -40,6 +41,7 @@ const categories: CategoryCard[] = [
     alt: "CNC collets, a collet chuck, boring bars and precision machine spares",
   },
   {
+    id: "cnc-services",
     kind: "service",
     title: "CNC Services",
     subtitle: "Expert Machining",
@@ -47,6 +49,7 @@ const categories: CategoryCard[] = [
     alt: "A CNC milling machine cutting a metal workpiece",
   },
   {
+    id: "cnc-program-solutions",
     kind: "service",
     title: "CNC Program Solutions",
     subtitle: "Optimized G-code",
@@ -54,6 +57,7 @@ const categories: CategoryCard[] = [
     alt: "A CNC workstation with a program display beside a machine control panel",
   },
   {
+    id: "engineering-drawings",
     kind: "service",
     title: "Engineering Drawings",
     subtitle: "CAD Design & Drafting",
@@ -92,7 +96,7 @@ export function FeaturedCategories() {
 
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-5 xl:grid-cols-4 xl:gap-6">
           {categories.map((category, index) => (
-            <article key={category.title} className="group overflow-hidden border border-border bg-card text-card-foreground transition-colors duration-300 hover:border-primary focus-within:border-primary">
+            <article id={category.id} key={category.title} className="group overflow-hidden border border-border bg-card text-card-foreground transition-colors duration-300 hover:border-primary focus-within:border-primary">
               <div className="relative aspect-[4/3] overflow-hidden bg-[#20282e]">
                 <Image
                   src={category.image}

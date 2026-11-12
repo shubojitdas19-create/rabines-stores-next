@@ -99,6 +99,7 @@ export function LeadRequestDialog({ label, className, ariaLabel, defaultProduct 
                   <option>Machine Accessories</option>
                   <option>CNC Services</option>
                   <option>CNC Program Solutions</option>
+                  <option>Custom Setup or Bulk Tooling</option>
                   <option>Engineering Drawings</option>
                   <option>Engineering Instruments</option>
                   <option>Measuring Instruments</option>
