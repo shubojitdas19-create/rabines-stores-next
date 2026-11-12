@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import * as Dialog from "@radix-ui/react-dialog";
 import { ArrowUpRight, X } from "lucide-react";
 import type { CatalogProduct } from "@/components/rabines/shop/catalog-data";
@@ -39,7 +40,9 @@ export function ProductCard({ product }: { product: CatalogProduct }) {
       <div className="p-4 sm:p-5">
         <p className="font-mono text-[10px] tracking-[0.08em] text-[#7a8286]">SKU {product.sku}</p>
         <h2 className="mt-2 min-h-[3rem] text-[15px] font-semibold leading-6 tracking-[-0.02em] text-[#171d21]">
-          {product.name}
+          <Link href={`/shop/tool-holders/${product.id}`} className="transition-colors hover:text-[#d85f2d] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary">
+            {product.name}
+          </Link>
         </h2>
         <div className="mt-4 flex items-end justify-between gap-3 border-t border-[#e6e8e9] pt-3.5">
           <div>
@@ -48,6 +51,9 @@ export function ProductCard({ product }: { product: CatalogProduct }) {
           </div>
           <p className="max-w-[6rem] text-right text-[10px] leading-4 text-[#7a8286]">{product.priceUnit}</p>
         </div>
+        <Link href={`/shop/tool-holders/${product.id}`} className="mt-3 flex min-h-10 items-center justify-between border-t border-[#e6e8e9] pt-3 font-mono text-[9px] font-semibold uppercase tracking-[0.11em] text-[#343c40] transition-colors hover:text-[#d85f2d] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary">
+          Full product details <ArrowUpRight aria-hidden="true" className="size-4" />
+        </Link>
       </div>
     </article>
   );

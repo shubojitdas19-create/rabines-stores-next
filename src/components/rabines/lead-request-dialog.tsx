@@ -14,6 +14,20 @@ type LeadRequestDialogProps = {
 
 const fields = "h-11 w-full border border-white/15 bg-[#11171c] px-3 text-sm text-white outline-none transition-colors placeholder:text-slate-500 focus:border-[#ff7040] focus:ring-2 focus:ring-[#ff7040]/20";
 const labelClass = "mb-1.5 block text-xs font-medium text-slate-300";
+const productOptions = [
+  "CNC Tool Holders",
+  "Cutting Inserts",
+  "Lathe Jaws",
+  "Machine Accessories",
+  "CNC Services",
+  "CNC Program Solutions",
+  "Custom Setup or Bulk Tooling",
+  "Engineering Drawings",
+  "Engineering Instruments",
+  "Measuring Instruments",
+  "CNC Programming or Drawings",
+  "Not sure — I need guidance",
+];
 
 export function LeadRequestDialog({ label, className, ariaLabel, defaultProduct = "", showArrow = false }: LeadRequestDialogProps) {
   const [open, setOpen] = useState(false);
@@ -93,18 +107,8 @@ export function LeadRequestDialog({ label, className, ariaLabel, defaultProduct 
                 <label className={labelClass} htmlFor="lead-product">What are you looking for? <span className="text-[#ff8050]">*</span></label>
                 <select className={`${fields} appearance-none`} id="lead-product" name="product" defaultValue={defaultProduct} required>
                   <option value="" disabled>Select a product or service</option>
-                  <option>CNC Tool Holders</option>
-                  <option>Cutting Inserts</option>
-                  <option>Lathe Jaws</option>
-                  <option>Machine Accessories</option>
-                  <option>CNC Services</option>
-                  <option>CNC Program Solutions</option>
-                  <option>Custom Setup or Bulk Tooling</option>
-                  <option>Engineering Drawings</option>
-                  <option>Engineering Instruments</option>
-                  <option>Measuring Instruments</option>
-                  <option>CNC Programming or Drawings</option>
-                  <option>Not sure — I need guidance</option>
+                  {defaultProduct && !productOptions.includes(defaultProduct) && <option value={defaultProduct}>{defaultProduct}</option>}
+                  {productOptions.map((productOption) => <option key={productOption} value={productOption}>{productOption}</option>)}
                 </select>
               </div>
             </div>
