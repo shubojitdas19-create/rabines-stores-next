@@ -23,7 +23,7 @@ export function PartnerLogoMarquee() {
 
   return (
     <div>
-      <div className="partner-marquee overflow-hidden" role="region" aria-label="Sample industry business logos">
+      <div className="partner-marquee overflow-hidden" role="region" aria-label="Illustrative sample brand logos">
         <div className="partner-marquee-track" data-paused={isPaused}>
           {[false, true].map((isDuplicate) => (
             <ul
@@ -56,7 +56,7 @@ export function PartnerLogoMarquee() {
 
       <div className="mt-4 flex flex-col items-center justify-center gap-2 sm:flex-row sm:gap-3">
         <p className="max-w-[34rem] text-center font-mono text-[10px] uppercase tracking-[0.1em] text-slate-400">
-          Illustrative sample logos for layout only — not current customers or endorsements
+          Placeholder names only — not current customers, partners, or endorsements
         </p>
         <button
           type="button"

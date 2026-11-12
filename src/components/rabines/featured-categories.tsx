@@ -73,6 +73,24 @@ const categories: CategoryCard[] = [
   },
 ];
 
+const trustPillars = [
+  {
+    number: "01",
+    title: "Precision tooling",
+    description: "Browse CNC tool holders, cutting inserts, lathe jaws, and machine accessories.",
+  },
+  {
+    number: "02",
+    title: "Engineering services",
+    description: "Explore CNC machining, program solutions, and engineering drawing support.",
+  },
+  {
+    number: "03",
+    title: "A direct conversation",
+    description: "Share a product or project requirement to ask a question or request a quote.",
+  },
+];
+
 export function FeaturedCategories() {
   return (
     <section id="products" aria-labelledby="featured-categories-title" className="border-t border-white/10 bg-[#131a20] py-14 text-white sm:py-16 lg:py-[72px]">
@@ -136,11 +154,55 @@ export function FeaturedCategories() {
           ))}
         </div>
 
-        <section aria-labelledby="trusted-by-title" className="mt-10 border-t border-white/10 pt-8 sm:mt-12 sm:pt-10">
-          <h3 id="trusted-by-title" className="text-center font-mono text-[10px] font-medium uppercase tracking-[0.18em] text-slate-400 sm:text-[11px]">
-            Trusted by Industry Leaders
-          </h3>
-          <div className="mt-7">
+        <section aria-labelledby="rabines-support-title" className="mt-10 overflow-hidden border border-white/10 bg-[#0b1115] sm:mt-14">
+          <div className="grid lg:grid-cols-[minmax(0,0.92fr)_minmax(0,1.08fr)]">
+            <div className="bg-primary p-5 text-[#171d21] sm:p-7 lg:p-9">
+              <p className="font-mono text-[9px] font-bold uppercase tracking-[0.16em] text-[#574031] sm:text-[10px]">
+                Rabines Stores <span className="mx-1.5">/</span> Product &amp; engineering support
+              </p>
+              <h3 id="rabines-support-title" className="mt-4 max-w-[28rem] text-[27px] font-semibold leading-[1.08] tracking-[-0.045em] sm:mt-5 sm:text-4xl">
+                Practical support for complex work.
+              </h3>
+              <p className="mt-3 max-w-[34rem] text-[13px] leading-6 text-[#343a3d] sm:mt-4 sm:text-sm">
+                Source CNC tooling, explore engineering services, or bring a specific application question to the team.
+              </p>
+              <LeadRequestDialog
+                label="Talk through a requirement"
+                ariaLabel="Talk through a product or engineering requirement"
+                defaultProduct="General product or engineering inquiry"
+                showArrow
+                className="mt-5 inline-flex min-h-12 w-full items-center justify-between gap-3 border border-[#171e23] bg-[#171e23] px-4 text-[10px] font-bold uppercase tracking-[0.08em] text-white transition-colors hover:bg-[#29343a] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#171e23] focus-visible:ring-offset-2 focus-visible:ring-offset-primary sm:mt-6 sm:w-auto"
+              />
+              <p className="mt-3 font-mono text-[8px] uppercase tracking-[0.12em] text-[#554737] sm:text-[9px]">
+                Products <span className="mx-1">·</span> Services <span className="mx-1">·</span> Technical inquiries
+              </p>
+            </div>
+
+            <div className="grid gap-px bg-white/10 sm:grid-cols-2">
+              {trustPillars.map((pillar, index) => (
+                <article key={pillar.number} className={`bg-[#10171c] p-4 sm:p-5 lg:p-6 ${index === 2 ? "sm:col-span-2" : ""}`}>
+                  <div className="flex items-start gap-3.5">
+                    <span className="grid size-9 shrink-0 place-items-center border border-primary/40 font-mono text-[10px] font-semibold text-primary">{pillar.number}</span>
+                    <div>
+                      <h4 className="text-[14px] font-semibold tracking-[-0.015em] text-white sm:text-[15px]">{pillar.title}</h4>
+                      <p className="mt-1.5 max-w-[32rem] text-xs leading-[1.65] text-slate-400 sm:text-[13px]">{pillar.description}</p>
+                    </div>
+                  </div>
+                </article>
+              ))}
+            </div>
+          </div>
+
+          <div className="border-t border-white/10 px-4 py-5 sm:px-6 sm:py-6 lg:px-8">
+            <div className="mb-4 flex flex-col gap-2 sm:mb-5 sm:flex-row sm:items-end sm:justify-between">
+              <div>
+                <p className="font-mono text-[8px] uppercase tracking-[0.16em] text-primary sm:text-[9px]">Illustrative brand strip</p>
+                <h4 className="mt-1 text-base font-semibold tracking-tight text-white sm:text-lg">Logo placeholders</h4>
+              </div>
+              <p className="max-w-[34rem] text-[11px] leading-5 text-slate-400 sm:text-right">
+                Replace these sample marks with approved customer or supplier logos before publishing.
+              </p>
+            </div>
             <PartnerLogoMarquee />
           </div>
         </section>
