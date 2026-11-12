@@ -30,7 +30,7 @@ export function LeadRequestDialog({ label, className, ariaLabel, defaultProduct 
     const requirement = String(formData.get("requirement") ?? "").trim();
 
     const message = [
-      "Hello Rabines Stores, I would like help with a tooling enquiry.",
+      "Hello Rabines Stores, I would like help with a tooling or engineering enquiry.",
       `Name: ${name}`,
       `Phone: ${phone}`,
       company && `Company / workshop: ${company}`,
@@ -60,11 +60,11 @@ export function LeadRequestDialog({ label, className, ariaLabel, defaultProduct 
           <div className="mb-6 flex items-start justify-between gap-4">
             <div>
               <p className="mb-2 flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.17em] text-[#ff8050]">
-                <span className="size-1.5 bg-[#ff7040]" /> Tooling enquiry · no obligation
+                <span className="size-1.5 bg-[#ff7040]" /> Tools &amp; engineering enquiry · no obligation
               </p>
               <Dialog.Title className="text-2xl font-semibold tracking-tight sm:text-[28px]">Tell us what you need.</Dialog.Title>
               <Dialog.Description className="mt-2 max-w-[420px] text-sm leading-6 text-slate-400">
-                Share a few details so our team can point you to the right tool. Your message opens in WhatsApp after you submit.
+                Share a few details so our team can help with the right product or technical service. Your message opens in WhatsApp after you submit.
               </Dialog.Description>
             </div>
             <Dialog.Close aria-label="Close enquiry form" className="grid size-9 shrink-0 place-items-center border border-white/10 text-slate-300 transition-colors hover:border-white/30 hover:text-white">
@@ -97,8 +97,12 @@ export function LeadRequestDialog({ label, className, ariaLabel, defaultProduct 
                   <option>Cutting Inserts</option>
                   <option>Lathe Jaws</option>
                   <option>Machine Accessories</option>
+                  <option>CNC Services</option>
+                  <option>CNC Program Solutions</option>
+                  <option>Engineering Drawings</option>
+                  <option>Engineering Instruments</option>
                   <option>Measuring Instruments</option>
-                  <option>CNC programming or drawings</option>
+                  <option>CNC Programming or Drawings</option>
                   <option>Not sure — I need guidance</option>
                 </select>
               </div>
@@ -111,7 +115,7 @@ export function LeadRequestDialog({ label, className, ariaLabel, defaultProduct 
               </div>
               <div>
                 <label className={labelClass} htmlFor="lead-requirement">What should we know? <span className="text-[#ff8050]">*</span></label>
-                <input className={fields} id="lead-requirement" name="requirement" placeholder="Part number, machine, or application" required />
+                <input className={fields} id="lead-requirement" name="requirement" placeholder="Part number, machine, or project brief" required />
               </div>
             </div>
 
