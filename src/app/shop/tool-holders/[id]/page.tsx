@@ -1,13 +1,19 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
-import { ChevronRight, Info } from "lucide-react";
+import { ChevronRight } from "lucide-react";
 import { MainFooter } from "@/components/rabines/main-footer";
 import { SiteHeader } from "@/components/rabines/site-header";
 import { ProductImageGallery } from "@/components/rabines/shop/product-image-gallery";
 import { ProductPurchasePanel } from "@/components/rabines/shop/product-purchase-panel";
 import { ProductSpecificationTable } from "@/components/rabines/shop/product-specification-table";
-import { sampleProducts } from "@/components/rabines/shop/catalog-data";
+import { getProductMake, sampleProducts } from "@/components/rabines/shop/catalog-data";
+
+const priceFormatter = new Intl.NumberFormat("en-IN", {
+  style: "currency",
+  currency: "INR",
+  maximumFractionDigits: 0,
+});
 
 type ProductPageProps = {
   params: Promise<{ id: string }>;
@@ -29,7 +35,7 @@ export async function generateMetadata({ params }: ProductPageProps): Promise<Me
 
   return {
     title: `${product.name} | Rabines Stores`,
-    description: `Review sample dimensions and technical specifications for ${product.name}. Confirm manufacturer dimensions, pricing, and availability before ordering.`,
+    description: `View product details and sample pricing for ${product.name} from Rabines Stores.`,
   };
 }
 
@@ -41,55 +47,49 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
   return (
     <>
       <SiteHeader />
-      <main id="top" className="bg-[#f2f4f4] text-[#171d21]">
-        <div className="mx-auto max-w-[1800px] px-5 pb-12 pt-6 sm:px-8 sm:pb-16 sm:pt-8 lg:px-16 lg:pb-20">
-          <nav aria-label="Breadcrumb" className="mb-5 sm:mb-7">
-            <ol className="flex flex-wrap items-center gap-2 font-mono text-[9px] uppercase tracking-[0.12em] text-[#7a8286] sm:text-[10px]">
+      <main id="top" className="bg-[#f3f4f2] text-[#171d21]">
+        <div className="mx-auto max-w-[1440px] px-4 pb-12 pt-5 sm:px-6 sm:pb-16 sm:pt-7 lg:px-10 lg:pb-20">
+          <nav aria-label="Breadcrumb">
+            <ol className="flex flex-wrap items-center gap-1.5 text-xs text-[#7a8286] sm:gap-2">
               <li><Link href="/#top" className="transition-colors hover:text-[#171d21]">Home</Link></li>
               <li aria-hidden="true"><ChevronRight className="size-3" /></li>
               <li><Link href="/#products" className="transition-colors hover:text-[#171d21]">Shop</Link></li>
               <li aria-hidden="true"><ChevronRight className="size-3" /></li>
-              <li><Link href="/shop/tool-holders" className="transition-colors hover:text-[#171d21]">Tool Holders</Link></li>
+              <li><Link href="/shop/tool-holders" className="transition-colors hover:text-[#171d21]">Tool holders</Link></li>
               <li aria-hidden="true"><ChevronRight className="size-3" /></li>
-              <li aria-current="page" className="max-w-[12rem] truncate text-[#d85f2d]">{product.name}</li>
+              <li aria-current="page" className="max-w-[10rem] truncate font-medium text-[#343c40]">{product.name}</li>
             </ol>
           </nav>
 
-          <div role="note" className="mb-5 flex items-start gap-2.5 border border-[#e9c2ad] bg-[#fff5ef] px-3.5 py-3 text-[10px] leading-5 text-[#704b39] sm:mb-6 sm:items-center sm:px-4">
-            <Info aria-hidden="true" className="mt-0.5 size-4 shrink-0 text-primary sm:mt-0" />
-            <p>Sample catalog detail — dimensions, prices, and availability below are illustrative, not verified Rabines product data. Confirm the manufacturer specification before ordering.</p>
+          <header className="mt-4 grid gap-4 rounded-md border border-[#e0e3e2] bg-white p-4 sm:mt-6 sm:grid-cols-[minmax(0,1fr)_auto] sm:items-center sm:p-5">
+            <div className="min-w-0">
+              <span className="inline-flex rounded-full bg-[#f3f4f2] px-3 py-1.5 text-xs font-medium text-[#626b70]">{product.category}</span>
+              <h1 id="product-title" className="mt-2.5 max-w-4xl text-[25px] font-semibold leading-[1.14] tracking-[-0.04em] text-[#171d21] sm:text-3xl lg:text-[36px]">{product.name}</h1>
+              <div className="mt-2 flex flex-wrap items-center gap-x-3 gap-y-1 text-xs">
+                <span className="text-[#7a8286]">Make: <span className="font-medium text-[#343c40]">{getProductMake(product)}</span></span>
+                <span aria-hidden="true" className="text-[#c3c8ca]">·</span>
+                <span className="text-[#7a8286]">SKU <span className="font-medium text-[#4c555a]">{product.sku}</span></span>
+              </div>
+            </div>
+
+            <div className="flex items-end justify-between gap-4 border-t border-[#eceeed] pt-3 sm:min-w-[210px] sm:flex-col sm:items-start sm:justify-center sm:border-l sm:border-t-0 sm:pl-6 sm:pt-0">
+              <div>
+                <p className="text-xs font-medium text-[#7a8286]">Sample price</p>
+                <p className="mt-0.5 text-[27px] font-semibold tracking-[-0.05em] text-[#171d21] sm:text-3xl">{priceFormatter.format(product.price)}</p>
+              </div>
+              <p className="pb-1 text-xs text-[#717a7f] sm:pb-0">{product.priceUnit}</p>
+            </div>
+          </header>
+
+          <div className="mt-4 grid gap-4 lg:grid-cols-[minmax(0,1.1fr)_minmax(320px,0.9fr)] lg:items-start lg:gap-6">
+            <ProductImageGallery product={product} />
+            <aside aria-label="Availability and product inquiry" className="rounded-md border border-[#e0e3e2] bg-white p-4 sm:p-5 lg:p-6">
+              <ProductPurchasePanel product={product} />
+            </aside>
           </div>
 
-          <div className="grid grid-cols-1 gap-4 sm:gap-6 lg:grid-cols-[minmax(0,1.08fr)_minmax(360px,0.92fr)] lg:items-start lg:gap-x-8 lg:gap-y-6">
-            <header className="lg:col-span-2">
-              <div className="flex flex-wrap items-center gap-2">
-                <span className="bg-[#171e23] px-2.5 py-1.5 font-mono text-[9px] uppercase tracking-[0.12em] text-white">{product.category}</span>
-                <span className={`inline-flex items-center gap-1.5 px-2.5 py-1.5 font-mono text-[9px] uppercase tracking-[0.1em] ${product.inStock ? "bg-[#e5eee8] text-[#315b43]" : "bg-[#eceeef] text-[#737a7e]"}`}>
-                  <span aria-hidden="true" className={`size-1.5 rounded-full ${product.inStock ? "bg-[#4e8a63]" : "bg-[#939a9e]"}`} />
-                  {product.inStock ? "Sample status · in stock" : "Sample status · backorder"}
-                </span>
-              </div>
-              <h1 id="product-title" className="mt-3 max-w-4xl text-[26px] font-semibold leading-[1.12] tracking-[-0.045em] text-[#171d21] sm:text-3xl lg:text-[40px]">{product.name}</h1>
-              <p className="mt-2 font-mono text-[9px] uppercase tracking-[0.12em] text-[#7a8286] sm:text-[10px]">SKU {product.sku}</p>
-            </header>
-
-            <div className="min-w-0 lg:row-start-2">
-              <ProductImageGallery product={product} />
-            </div>
-
-            <aside aria-label="Purchase options" className="h-fit border border-[#d9dddf] bg-white lg:row-start-2 lg:sticky lg:top-6">
-              <div className="flex items-center justify-between gap-3 border-b border-[#e6e8e9] bg-[#f7f8f8] px-4 py-3 sm:px-6">
-                <p className="font-mono text-[9px] uppercase tracking-[0.13em] text-[#616a6f]">Purchase options</p>
-                <span className="font-mono text-[8px] uppercase tracking-[0.1em] text-[#90979b]">Sample pricing</span>
-              </div>
-              <div className="p-4 sm:p-6">
-                <ProductPurchasePanel product={product} />
-              </div>
-            </aside>
-
-            <div className="min-w-0 lg:col-span-2">
-              <ProductSpecificationTable product={product} />
-            </div>
+          <div className="mt-5">
+            <ProductSpecificationTable product={product} />
           </div>
         </div>
       </main>
