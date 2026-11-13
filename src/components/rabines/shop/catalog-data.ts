@@ -12,8 +12,14 @@ export type CatalogProduct = {
   priceUnit: string;
   image: string;
   imageAlt: string;
+  make?: string;
   specs: { label: string; value: string }[];
 };
+
+export function getProductMake(product: CatalogProduct): string {
+  const makeFromSpecs = product.specs.find(({ label }) => /^(make|manufacturer|brand)$/i.test(label))?.value.trim();
+  return product.make?.trim() || makeFromSpecs || "Not specified";
+}
 
 export const toolCategories: ToolCategory[] = ["Turning", "Milling", "Drilling"];
 export const materialGrades: MaterialGrade[] = ["Carbide", "HSS"];
