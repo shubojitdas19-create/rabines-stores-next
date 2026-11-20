@@ -1,11 +1,11 @@
 import type { MetadataRoute } from "next";
-import { getStoreCategories, getStoreProducts } from "@/lib/api/client";
+import { getStoreProducts } from "@/lib/api/client";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = "https://rabinesstores.in";
   const now = new Date();
 
-  // 1. Core High-Priority Landing & Hub Pages
+  // 1. Core High-Priority Canonical Pages
   const staticRoutes: MetadataRoute.Sitemap = [
     {
       url: `${baseUrl}`,
@@ -57,7 +57,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     },
   ];
 
-  // 2. Dynamic Product Pages (All CNC tool holders, inserts, end mills, etc.)
+  // 2. Dynamic Product Pages (Each has a 100% self-referencing canonical tag)
   let productRoutes: MetadataRoute.Sitemap = [];
   try {
     const products = await getStoreProducts();
@@ -71,19 +71,5 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     console.error("Failed to generate product sitemap entries:", error);
   }
 
-  // 3. Category Query Routes
-  let categoryRoutes: MetadataRoute.Sitemap = [];
-  try {
-    const categories = await getStoreCategories();
-    categoryRoutes = categories.map((cat) => ({
-      url: `${baseUrl}/shop/tool-holders?category=${encodeURIComponent(cat.slug || cat.name)}`,
-      lastModified: now,
-      changeFrequency: "weekly",
-      priority: 0.8,
-    }));
-  } catch (error) {
-    console.error("Failed to generate category sitemap entries:", error);
-  }
-
-  return [...staticRoutes, ...productRoutes, ...categoryRoutes];
+  return [...staticRoutes, ...productRoutes];
 }

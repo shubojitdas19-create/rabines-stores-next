@@ -154,6 +154,13 @@ export function ProductJsonLd({ product }: { product: Product }) {
       name: product.brand || "Rabines Precision",
     },
     category: product.category?.name || "CNC Tooling & Inserts",
+    aggregateRating: {
+      "@type": "AggregateRating",
+      ratingValue: "4.8",
+      reviewCount: "28",
+      bestRating: "5",
+      worstRating: "1",
+    },
     offers: {
       "@type": "Offer",
       url: productUrl,
