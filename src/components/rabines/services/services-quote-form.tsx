@@ -2,6 +2,7 @@
 
 import { type ChangeEvent, type FormEvent, useState } from "react";
 import { ArrowUpRight, FileText, Paperclip, Trash2 } from "lucide-react";
+import { submitStoreLead } from "@/lib/api/client";
 
 type QuoteFile = File & { key: string };
 
@@ -68,6 +69,14 @@ export function ServicesQuoteForm() {
     const targetDate = String(formData.get("targetDate") ?? "").trim();
     const projectBrief = String(formData.get("projectBrief") ?? "").trim();
     const drawingNames = files.length ? files.map((file) => file.name).join(", ") : "I will share the drawing in WhatsApp";
+
+    // Submit lead directly to Tenant Portal backend
+    submitStoreLead({
+      name,
+      phone: phone || "Not specified",
+      address: [company, email ? `Email: ${email}` : ""].filter(Boolean).join(" · ") || "Howrah Engineering Unit",
+      message: `[Drawing Quote] Service: ${service} | Qty: ${quantity || "N/A"} | Target: ${targetDate || "N/A"} | Files: ${drawingNames} | Brief: ${projectBrief}`,
+    }).catch((e) => console.warn("Failed to store engineering quote lead:", e));
 
     const message = [
       "Hello Rabines Stores, I would like a quote for an engineering project.",

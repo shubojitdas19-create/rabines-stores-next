@@ -1,4 +1,6 @@
 import Image from "next/image";
+import Link from "next/link";
+import { ArrowUpRight } from "lucide-react";
 import { LeadRequestDialog } from "@/components/rabines/lead-request-dialog";
 import { PartnerLogoMarquee } from "@/components/rabines/partner-logo-marquee";
 
@@ -9,6 +11,7 @@ type CategoryCard = {
   subtitle: string;
   image: string;
   alt: string;
+  href?: string;
 };
 
 const categories: CategoryCard[] = [
@@ -142,13 +145,23 @@ export function FeaturedCategories() {
                 <span className="font-mono text-[9px] uppercase tracking-[0.12em] text-muted-foreground">
                   {category.kind === "product" ? "Browse category" : "Talk to an expert"}
                 </span>
-                <LeadRequestDialog
-                  label={category.kind === "product" ? "View range" : "Explore"}
-                  ariaLabel={`${category.kind === "product" ? "View" : "Explore"} ${category.title}`}
-                  defaultProduct={category.title}
-                  showArrow
-                  className="group/view-range inline-flex h-10 items-center gap-2 text-[11px] font-bold uppercase tracking-[0.1em] text-card-foreground transition-all duration-300 hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring md:translate-x-2 md:opacity-0 md:group-hover:translate-x-0 md:group-hover:opacity-100 md:group-focus-within:translate-x-0 md:group-focus-within:opacity-100"
-                />
+                {category.kind === "product" ? (
+                  <Link
+                    href={category.href || "/shop/tool-holders"}
+                    className="group/view-range inline-flex h-10 items-center gap-2 text-[11px] font-bold uppercase tracking-[0.1em] text-card-foreground transition-all duration-300 hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                  >
+                    View range
+                    <ArrowUpRight aria-hidden="true" className="size-3.5 transition-transform group-hover/view-range:-translate-y-0.5 group-hover/view-range:translate-x-0.5" />
+                  </Link>
+                ) : (
+                  <LeadRequestDialog
+                    label="Explore"
+                    ariaLabel={`Explore ${category.title}`}
+                    defaultProduct={category.title}
+                    showArrow
+                    className="group/view-range inline-flex h-10 items-center gap-2 text-[11px] font-bold uppercase tracking-[0.1em] text-card-foreground transition-all duration-300 hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                  />
+                )}
               </div>
             </article>
           ))}

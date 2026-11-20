@@ -4,7 +4,8 @@ import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { LeadRequestDialog } from "@/components/rabines/lead-request-dialog";
-import { Menu, X } from "lucide-react";
+import { Menu, ShoppingBag, X } from "lucide-react";
+import { useCart } from "@/context/cart-context";
 
 const links = [
   { label: "Shop", href: "/shop/tool-holders" },
@@ -16,6 +17,7 @@ const links = [
 
 export function SiteHeader() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const { totalItems, setIsCartOpen } = useCart();
 
   return (
     <header className="relative z-20 border-b border-white/10 bg-[#11171c] text-white">
@@ -40,13 +42,31 @@ export function SiteHeader() {
           </nav>
         </div>
 
-        <div className="hidden items-center lg:flex">
-          <LeadRequestDialog label="Request a quote" className="group flex h-10 items-center gap-2 bg-[#ef6b32] px-4 text-[12px] font-bold uppercase tracking-[0.09em] text-[#14191d] transition-colors hover:bg-[#ff8750]" />
-        </div>
+        <div className="flex items-center gap-3">
+          {/* Cart Icon Button */}
+          <button
+            type="button"
+            onClick={() => setIsCartOpen(true)}
+            aria-label={`Open shopping cart with ${totalItems} items`}
+            className="relative flex h-10 items-center gap-2 border border-white/15 px-3 text-slate-200 transition-colors hover:border-white/30 hover:text-white"
+          >
+            <ShoppingBag className="size-4 text-[#ef6b32]" />
+            <span className="hidden sm:inline text-xs font-medium">Cart</span>
+            {totalItems > 0 && (
+              <span className="grid size-5 place-items-center rounded-full bg-[#ef6b32] font-mono text-[10px] font-bold text-[#11171c]">
+                {totalItems}
+              </span>
+            )}
+          </button>
 
-        <button type="button" aria-label={menuOpen ? "Close navigation menu" : "Open navigation menu"} aria-expanded={menuOpen} aria-controls="mobile-navigation" onClick={() => setMenuOpen((open) => !open)} className="grid size-11 place-items-center border border-white/15 text-white lg:hidden">
-          {menuOpen ? <X aria-hidden="true" className="size-5" /> : <Menu aria-hidden="true" className="size-5" />}
-        </button>
+          <div className="hidden lg:flex items-center">
+            <LeadRequestDialog label="Request a quote" className="group flex h-10 items-center gap-2 bg-[#ef6b32] px-4 text-[12px] font-bold uppercase tracking-[0.09em] text-[#14191d] transition-colors hover:bg-[#ff8750]" />
+          </div>
+
+          <button type="button" aria-label={menuOpen ? "Close navigation menu" : "Open navigation menu"} aria-expanded={menuOpen} aria-controls="mobile-navigation" onClick={() => setMenuOpen((open) => !open)} className="grid size-10 place-items-center border border-white/15 text-white lg:hidden">
+            {menuOpen ? <X aria-hidden="true" className="size-5" /> : <Menu aria-hidden="true" className="size-5" />}
+          </button>
+        </div>
       </div>
 
       {menuOpen && (
