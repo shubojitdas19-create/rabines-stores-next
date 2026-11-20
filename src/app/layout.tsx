@@ -23,7 +23,7 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://rabines-stores.in"),
+  metadataBase: new URL("https://rabinesstores.in"),
   title: {
     default: "Rabines Stores | Precision CNC Tool Holders, Carbide Inserts & Machining",
     template: "%s | Rabines Stores",
@@ -31,7 +31,7 @@ export const metadata: Metadata = {
   description:
     "Rabines Stores is India's premier manufacturer and supplier of precision CNC tool holders, carbide turning & milling inserts, solid carbide end mills, and custom machining job work. Serving machine shops and manufacturers nationwide from Howrah, West Bengal.",
   applicationName: "Rabines Stores",
-  authors: [{ name: "Rabines Precision Engineering", url: "https://rabines-stores.in" }],
+  authors: [{ name: "Rabines Precision Engineering", url: "https://rabinesstores.in" }],
   generator: "Next.js",
   keywords: [
     // Brand Variations
@@ -96,7 +96,7 @@ export const metadata: Metadata = {
     title: "Rabines Stores | Precision CNC Tool Holders, Carbide Inserts & Machining",
     description:
       "Industrial-grade CNC tool holders, carbide inserts, end mills, and precision machining job work. Tested for high rigidity and precision tolerances. Fast dispatch across India.",
-    url: "https://rabines-stores.in",
+    url: "https://rabinesstores.in",
     siteName: "Rabines Stores",
     images: [
       {

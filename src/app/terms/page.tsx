@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   title: "Terms and Conditions | Rabines Stores",
   description: "Terms and conditions of sale, supply, and engineering support from Rabines Stores, Howrah.",
   alternates: {
-    canonical: "https://rabines-stores.in/terms",
+    canonical: "https://rabinesstores.in/terms",
   },
 };
 

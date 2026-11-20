@@ -1,6 +1,6 @@
 import type { Product } from "@/lib/api/client";
 
-const BASE_URL = "https://rabines-stores.in";
+const BASE_URL = "https://rabinesstores.in";
 
 export function OrganizationJsonLd() {
   const schema = {

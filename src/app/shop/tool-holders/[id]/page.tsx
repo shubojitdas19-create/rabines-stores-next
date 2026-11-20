@@ -39,11 +39,11 @@ export async function generateMetadata({ params }: ProductPageProps): Promise<Me
   const price = typeof product.basePrice === "number" ? product.basePrice : parseFloat(product.basePrice || "0");
   const brand = product.brand || "Rabines Precision";
   const categoryName = product.category?.name || "CNC Tooling";
-  const productUrl = `https://rabines-stores.in/shop/tool-holders/${product.slug || product.id}`;
+  const productUrl = `https://rabinesstores.in/shop/tool-holders/${product.slug || product.id}`;
   const images =
     product.media && product.media.length > 0
-      ? product.media.map((m) => (m.url.startsWith("http") ? m.url : `https://rabines-stores.in${m.url}`))
-      : ["https://rabines-stores.in/images/categories/cnc-tool-holders.png"];
+      ? product.media.map((m) => (m.url.startsWith("http") ? m.url : `https://rabinesstores.in${m.url}`))
+      : ["https://rabinesstores.in/images/categories/cnc-tool-holders.png"];
 
   return {
     title: `${product.name} | ${brand}`,

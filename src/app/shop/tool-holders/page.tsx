@@ -25,13 +25,13 @@ export const metadata: Metadata = {
     "industrial tooling supplier Howrah",
   ],
   alternates: {
-    canonical: "https://rabines-stores.in/shop/tool-holders",
+    canonical: "https://rabinesstores.in/shop/tool-holders",
   },
   openGraph: {
     title: "CNC Tool Holders, Carbide Inserts & Cutting Tools | Rabines Stores",
     description:
       "Explore high-rigidity CNC tool holders, turning & milling carbide inserts, and workshop tooling. Fast dispatch and verified tolerances.",
-    url: "https://rabines-stores.in/shop/tool-holders",
+    url: "https://rabinesstores.in/shop/tool-holders",
     images: ["/images/categories/cnc-tool-holders.png"],
   },
 };

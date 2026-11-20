@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   title: "Refund & Cancellation Policy | Rabines Stores",
   description: "Replacement, returns, and refund policy for CNC tool holders and inserts at Rabines Stores.",
   alternates: {
-    canonical: "https://rabines-stores.in/refund-policy",
+    canonical: "https://rabinesstores.in/refund-policy",
   },
 };
 

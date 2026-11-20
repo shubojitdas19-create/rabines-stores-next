@@ -25,13 +25,13 @@ export const metadata: Metadata = {
     "custom precision components manufacturing",
   ],
   alternates: {
-    canonical: "https://rabines-stores.in/services",
+    canonical: "https://rabinesstores.in/services",
   },
   openGraph: {
     title: "Precision CNC Machining, Programming & CAD Services | Rabines Stores",
     description:
       "Explore high-precision CNC turning, VMC milling, G-code toolpath optimization, and manufacturing drawings from Rabines Stores. Fast turnaround & tight tolerances.",
-    url: "https://rabines-stores.in/services",
+    url: "https://rabinesstores.in/services",
     images: ["/images/categories/cnc-services.png"],
   },
 };

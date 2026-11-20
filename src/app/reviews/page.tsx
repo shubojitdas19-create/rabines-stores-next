@@ -16,13 +16,13 @@ export const metadata: Metadata = {
     "carbide insert customer ratings",
   ],
   alternates: {
-    canonical: "https://rabines-stores.in/reviews",
+    canonical: "https://rabinesstores.in/reviews",
   },
   openGraph: {
     title: "Customer & Workshop Reviews | Rabines Stores",
     description:
       "Verified feedback from CNC machine shops using Rabines tool holders, inserts, and machining services.",
-    url: "https://rabines-stores.in/reviews",
+    url: "https://rabinesstores.in/reviews",
     images: ["/images/cnc-machining-hero.png"],
   },
 };

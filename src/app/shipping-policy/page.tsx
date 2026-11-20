@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   title: "Shipping & Delivery Policy | Rabines Stores",
   description: "Pan-India dispatch and delivery policy for CNC tool holders and machine spares from Rabines Stores Howrah.",
   alternates: {
-    canonical: "https://rabines-stores.in/shipping-policy",
+    canonical: "https://rabinesstores.in/shipping-policy",
   },
 };
 

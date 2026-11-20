@@ -86,7 +86,7 @@ export default function Image() {
           }}
         >
           <span style={{ fontSize: "20px", color: "#ffffff", fontWeight: 600 }}>
-            rabines-stores.in
+            rabinesstores.in
           </span>
           <div
             style={{

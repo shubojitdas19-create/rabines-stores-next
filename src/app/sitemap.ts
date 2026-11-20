@@ -2,7 +2,7 @@ import type { MetadataRoute } from "next";
 import { getStoreCategories, getStoreProducts } from "@/lib/api/client";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const baseUrl = "https://rabines-stores.in";
+  const baseUrl = "https://rabinesstores.in";
   const now = new Date();
 
   // 1. Core High-Priority Landing & Hub Pages

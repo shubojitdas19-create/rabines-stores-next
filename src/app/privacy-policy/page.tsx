@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   title: "Privacy Policy | Rabines Stores",
   description: "Privacy policy and engineering IP confidentiality terms of Rabines Stores, Howrah.",
   alternates: {
-    canonical: "https://rabines-stores.in/privacy-policy",
+    canonical: "https://rabinesstores.in/privacy-policy",
   },
 };
 
